@@ -1,0 +1,8 @@
+/spawn
+/shop
+/pass
+/worldborder add 250 250
+/worldborder set 400
+/worldborder set 30
+/worldborder set 300
+/spawn

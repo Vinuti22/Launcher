@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'" />
+  <title>FulliaCraft Launcher</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="stage" class="s-auth">
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="pill glass" id="pill"><i class="dot"></i><span id="pill-text">Проверяем сервер…</span></div>
+    <div class="wc">
+      <button data-w="min" title="Свернуть">—</button>
+      <button data-w="max" title="Развернуть">▢</button>
+      <button data-w="close" title="Закрыть">✕</button>
+    </div>
+  </header>
+
+  <!-- ===== 1. ВХОД / РЕГИСТРАЦИЯ ===== -->
+  <section id="s-auth" class="screen auth">
+    <div class="auth-hero">
+      <img class="mascot" src="assets/mascot.png" alt="" />
+      <div class="wordmark big"><span>FULLIA</span><span>CRAFT</span></div>
+      <p class="tag">♥ ИГРАЙ • РАЗВИВАЙСЯ • ПОБЕЖДАЙ ♥</p>
+    </div>
+    <div class="card glass">
+      <div class="tabs">
+        <button type="button" class="on" data-tab="login">Вход</button>
+        <button type="button" data-tab="reg">Регистрация</button>
+      </div>
+      <form id="f-login" class="form">
+        <label>Ник<input id="l-name" autocomplete="username" maxlength="16" placeholder="Твой ник" /></label>
+        <label>Пароль<input id="l-pass" type="password" autocomplete="current-password" placeholder="••••••" /></label>
+        <button class="btn main">Войти</button>
+      </form>
+      <form id="f-reg" class="form" hidden>
+        <label>Ник<input id="r-name" maxlength="16" placeholder="3–16 символов: A–Z, 0–9, _" /></label>
+        <label>Пароль<input id="r-pass" type="password" autocomplete="new-password" placeholder="Минимум 6 символов" /></label>
+        <label>Повтори пароль<input id="r-pass2" type="password" autocomplete="new-password" placeholder="Ещё раз" /></label>
+        <button class="btn main">Создать аккаунт</button>
+        <p class="hint">Дальше аккаунт подтверждается через Discord-бота.</p>
+      </form>
+      <p id="auth-err" class="err"></p>
+      <div class="soon"><b>Discord</b> · вход и привязка — скоро</div>
+    </div>
+  </section>
+
+  <!-- ===== 2. ПОДТВЕРЖДЕНИЕ В DISCORD (место под бота) ===== -->
+  <section id="s-verify" class="screen center" hidden>
+    <div class="card glass wide">
+      <h2>Подтверди аккаунт в Discord</h2>
+      <p class="sub">Один шаг — и аккаунт защищён.</p>
+      <ol class="steps">
+        <li><b>1</b><div>Зайди на наш Discord-сервер <button class="btn discord" data-link="discord" data-soon="Discord-сервер скоро появится 💜">Открыть Discord</button></div></li>
+        <li><b>2</b><div>Отправь боту команду <code id="vf-cmd">/verify</code> <button class="btn ghost" id="vf-copy">Копировать</button></div></li>
+        <li><b>3</b><div>Нажми «Проверить» — бот подтвердит аккаунт <span class="badge" id="vf-badge">ожидает</span></div></li>
+      </ol>
+      <p class="note">Discord-бот пока не подключён — подтвердить аккаунт можно будет позже в разделе «Профиль».</p>
+      <div class="row"><button class="btn main" id="vf-check">Проверить</button><button class="btn ghost" id="vf-skip">Продолжить позже →</button></div>
+    </div>
+  </section>
+
+  <!-- ===== 3. ГЛАВНОЕ МЕНЮ ===== -->
+  <section id="s-main" class="screen main" hidden>
+    <aside class="side">
+      <div class="brand"><img src="assets/icon.png" alt="" /><div class="wordmark mini"><span>FULLIA</span><span>CRAFT</span></div></div>
+      <nav>
+        <button class="nav on" data-view="home"><i class="ico"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></i>Главная</button>
+        <button class="nav" data-view="donate"><i class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6M10 21h.01M18 21h.01"/></svg></i>Магазин</button>
+        <button class="nav" data-view="settings"><i class="ico"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19.4 15 .1.1 1.1 1.9-2 3.4-2.2-.5a8 8 0 0 1-1.7 1l-.7 2.1h-4l-.7-2.1a8 8 0 0 1-1.7-1l-2.2.5-2-3.4 1.1-1.9a8 8 0 0 1 0-2l-1.1-1.9 2-3.4 2.2.5a8 8 0 0 1 1.7-1L10 5h4l.7 2.1a8 8 0 0 1 1.7 1l2.2-.5 2 3.4-1.1 1.9a8 8 0 0 1-.1 2.1Z"/></svg></i>Настройки</button>
+        <button class="nav" data-view="profile"><i class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i>Профиль</button>
+        <button class="nav" data-view="about"><i class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg></i>О сервере</button>
+      </nav>
+      <img class="side-mascot" src="assets/mascot.png" alt="" />
+      <div class="ver" id="ver"></div>
+    </aside>
+
+    <div class="views">
+      <div class="view on" id="view-home">
+        <div class="hero">
+          <img class="mascot" src="assets/mascot.png" alt="" />
+          <div class="wordmark huge"><span>FULLIA</span><span>CRAFT</span></div>
+          <p class="tag">♥ ИГРАЙ • РАЗВИВАЙСЯ • ПОБЕЖДАЙ ♥</p>
+          <div class="row"><button class="play" id="btn-play">▶ Играть</button><button class="gear glass" data-go="settings" title="Настройки">⚙</button></div>
+          <div id="progress"><i id="pfill"></i></div>
+          <p class="pstat" id="pstat"></p>
+        </div>
+        <aside class="right">
+          <div class="glass status">
+            <h3><span class="heading-icon">▥</span> Статус сервера</h3>
+            <div class="big"><i class="dot" id="st-dot"></i><span id="st-online">Онлайн: — / —</span></div>
+            <div class="bars" id="bars"></div>
+            <div class="srow">
+              <div><p><span class="mini-icon">◎</span> IP: <b id="st-ip"></b></p><p><span class="mini-icon">◇</span> Версия: <b id="st-ver"></b></p><p><span class="mini-icon">◷</span> Время работы: <b>24/7</b></p></div>
+              <div class="ping"><small>Пинг</small><b id="st-ping">—</b></div>
+            </div>
+          </div>
+          <div class="glass news"><h3><span class="heading-icon">✦</span> Новости</h3><div id="news"></div></div>
+        </aside>
+        <div class="adv">
+          <div class="glass"><i class="feature-icon">✧</i>Стабильный<br>сервер 24/7</div>
+          <div class="glass"><i class="feature-icon">◇</i>Уникальные<br>ивенты</div>
+          <div class="glass"><i class="feature-icon">♡</i>Дружное<br>сообщество</div>
+          <div class="glass"><i class="feature-icon">♛</i>Активная<br>администрация</div>
+        </div>
+        <div class="glass support">
+          <span class="ch"><img src="assets/mascot.png" alt="Осьминог FulliaCraft"></span>
+          <div><h4>ПОДДЕРЖИ<br>СЕРВЕР!</h4><p>Покупай донат и получай уникальные возможности!</p><button class="btn ghost" data-link="shop" data-soon="Ссылка на магазин пока не настроена">Перейти в магазин →</button></div>
+        </div>
+      </div>
+
+      <div class="view" id="view-donate"><div class="glass panel">
+        <h2>Магазин FulliaCraft</h2>
+        <p>Здесь будет магазин сервера: привилегии, кейсы и косметика.</p>
+        <div><button class="btn main" data-link="shop" data-soon="Ссылка на магазин пока не настроена">Открыть магазин</button></div>
+      </div></div>
+
+      <div class="view" id="view-settings"><div class="glass panel">
+        <h2>Настройки лаунчера</h2>
+        <p>Память, путь к игре и язык появятся здесь. Пока — журнал запуска:</p>
+        <div id="log"></div>
+      </div></div>
+
+      <div class="view" id="view-profile"><div class="glass panel">
+        <h2>Мой профиль</h2>
+        <p>Ник: <b id="pf-name"></b></p>
+        <p>Discord: <span class="badge" id="pf-badge"></span> <span id="pf-tag"></span></p>
+        <div class="row"><button class="btn main" id="pf-verify">Подтвердить в Discord</button><button class="btn ghost" id="btn-logout">Выйти из аккаунта</button></div>
+      </div></div>
+
+      <div class="view" id="view-about"><div class="glass panel">
+        <h2>О FulliaCraft</h2>
+        <p>FulliaCraft — уютный Minecraft-сервер с ивентами, магазином и дружным сообществом.</p>
+        <div class="row">
+          <button class="btn discord" data-link="discord" data-soon="Discord-сервер скоро появится 💜">Discord</button>
+          <button class="btn ghost" data-link="site" data-soon="Сайт пока не настроен">Сайт</button>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <div id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

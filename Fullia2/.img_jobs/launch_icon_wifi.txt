@@ -1,0 +1,2 @@
+Job log: C:\Users\Denis\AppData\Local\Temp\image_generation-job-dmw_04te\worker.log
+Job PID file: C:\Users\Denis\AppData\Local\Temp\image_generation-job-dmw_04te\worker.pid

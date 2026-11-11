@@ -1,0 +1,43 @@
+{
+  "name": "fulliacraft-launcher",
+  "version": "1.0.0",
+  "description": "Лаунчер сервера FulliaCraft",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "dependencies": {
+    "minecraft-launcher-core": "^3.18.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "author": "FulliaCraft",
+  "build": {
+    "appId": "ru.fulliacraft.launcher",
+    "productName": "FulliaCraft Launcher",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

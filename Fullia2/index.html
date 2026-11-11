@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'" />
+  <title>FulliaCraft Launcher 3D</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="stage" class="s-auth">
+  <!-- Сказочный 3D Minecraft-город на фоне -->
+  <div class="bg-world"></div>
+  <div class="light-effects"></div>
+
+  <header class="topbar">
+    <div class="pill glass" id="pill"><i class="dot"></i><span id="pill-text">Проверяем сервер…</span></div>
+    <div class="wc">
+      <button data-w="min" title="Свернуть">—</button>
+      <button data-w="max" title="Развернуть">▢</button>
+      <button data-w="close" title="Закрыть">✕</button>
+    </div>
+  </header>
+
+  <!-- ===== 1. ВХОД / РЕГИСТРАЦИЯ ===== -->
+  <section id="s-auth" class="screen auth">
+    <div class="auth-hero">
+      <img class="mascot 3d-mascot" src="assets/mascot-3d.png" alt="FulliaCraft 3D Mascot" />
+      <div class="wordmark 3d-logo big"><span>FULLIA</span><span>CRAFT</span></div>
+      <p class="tag 3d-tag">♥ ИГРАЙ • РАЗВИВАЙСЯ • ПОБЕЖДАЙ ♥</p>
+    </div>
+    <div class="card glass 3d-glass-panel">
+      <div class="tabs">
+        <button type="button" class="on" data-tab="login">Вход</button>
+        <button type="button" data-tab="reg">Регистрация</button>
+      </div>
+      <form id="f-login" class="form">
+        <label>Ник<input id="l-name" autocomplete="username" maxlength="16" placeholder="Твой ник" /></label>
+        <label>Пароль<input id="l-pass" type="password" autocomplete="current-password" placeholder="••••••" /></label>
+        <button class="btn main 3d-glow-btn">Войти</button>
+      </form>
+      <form id="f-reg" class="form" hidden>
+        <label>Ник<input id="r-name" maxlength="16" placeholder="3–16 символов: A–Z, 0–9, _" /></label>
+        <label>Пароль<input id="r-pass" type="password" autocomplete="new-password" placeholder="Минимум 6 символов" /></label>
+        <label>Повтори пароль<input id="r-pass2" type="password" autocomplete="new-password" placeholder="Ещё раз" /></label>
+        <button class="btn main 3d-glow-btn">Создать аккаунт</button>
+        <p class="hint">Дальше аккаунт подтверждается через Discord-бота.</p>
+      </form>
+      <p id="auth-err" class="err"></p>
+      <div class="soon"><b>Discord</b> · вход и привязка — скоро</div>
+    </div>
+  </section>
+
+  <!-- ===== 2. ГЛАВНОЕ МЕНЮ ===== -->
+  <section id="s-main" class="screen main" hidden>
+    <aside class="side 3d-sidebar">
+      <div class="brand">
+        <img src="assets/mascot-3d.png" class="3d-avatar" alt="3D Octo" />
+        <div class="wordmark 3d-logo mini"><span>FULLIA</span><span>CRAFT</span></div>
+      </div>
+      <nav>
+        <button class="nav on" data-view="home"><i class="ico"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></i>Главная</button>
+        <button class="nav" data-view="donate"><i class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6M10 21h.01M18 21h.01"/></svg></i>Магазин</button>
+        <button class="nav" data-view="settings"><i class="ico"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19.4 15 .1.1 1.1 1.9-2 3.4-2.2-.5a8 8 0 0 1-1.7 1l-.7 2.1h-4l-.7-2.1a8 8 0 0 1-1.7-1l-2.2.5-2-3.4 1.1-1.9a8 8 0 0 1 0-2l-1.1-1.9 2-3.4 2.2.5a8 8 0 0 1 1.7-1L10 5h4l.7 2.1a8 8 0 0 1 1.7 1l2.2-.5 2 3.4-1.1 1.9a8 8 0 0 1-.1 2.1Z"/></svg></i>Настройки</button>
+        <button class="nav" data-view="profile"><i class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i>Профиль</button>
+        <button class="nav" data-view="about"><i class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg></i>О сервере</button>
+      </nav>
+      <div class="side-footer">
+        <p class="slogan-3d">Играй. Развивайся. Побеждай ♡</p>
+        <div class="ver" id="ver">v1.0.0</div>
+      </div>
+    </aside>
+
+    <div class="views">
+      <div class="view on" id="view-home">
+        <div class="hero">
+          <img class="mascot 3d-hero-mascot" src="assets/mascot-3d.png" alt="3D Mascot Hero" />
+          <div class="wordmark 3d-logo huge"><span>FULLIA</span><span>CRAFT</span></div>
+          <p class="sub-slogan">-- Твой уютный Minecraft сервер ♡ --</p>
+          <div class="row">
+            <button class="play 3d-play-btn" id="btn-play">
+              <span class="play-icon">▶</span>
+              <span class="play-text-group">
+                <span class="play-main-text">Играть</span>
+                <span class="play-sub-text">Погрузись в мир FulliaCraft!</span>
+              </span>
+            </button>
+            <button class="gear glass 3d-gear-btn" data-go="settings" title="Настройки">⚙</button>
+          </div>
+          <div id="progress"><i id="pfill"></i></div>
+          <p class="pstat" id="pstat"></p>
+        </div>
+
+        <aside class="right">
+          <div class="glass status 3d-card">
+            <h3><span class="heading-icon">▥</span> Статус сервера</h3>
+            <div class="big"><i class="dot" id="st-dot"></i><span id="st-online">Онлайн: — / —</span></div>
+            <div class="bars" id="bars"></div>
+            <div class="srow">
+              <div>
+                <p><span class="mini-icon">🌐</span> IP: <b id="st-ip">play.fulliacraft.ru</b></p>
+                <p><span class="mini-icon">⚙</span> Версия: <b id="st-ver">1.21.4</b></p>
+                <p><span class="mini-icon">🕒</span> Время работы: <b>24/7</b></p>
+              </div>
+              <div class="ping 3d-ping"><small>Пинг</small><b id="st-ping">42ms</b></div>
+            </div>
+          </div>
+          <div class="glass news 3d-card">
+            <div class="news-header">
+              <h3><span class="heading-icon">📢</span> Новости</h3>
+              <button class="btn-all-news">Все новости →</button>
+            </div>
+            <div id="news"></div>
+          </div>
+        </aside>
+
+        <div class="adv">
+          <div class="glass 3d-card"><i class="feature-icon">⚡</i><span>Стабильный сервер 24/7</span></div>
+          <div class="glass 3d-card"><i class="feature-icon">💎</i><span>Уникальные ивенты</span></div>
+          <div class="glass 3d-card"><i class="feature-icon">💜</i><span>Дружное сообщество</span></div>
+          <div class="glass 3d-card"><i class="feature-icon">👑</i><span>Активная администрация</span></div>
+        </div>
+
+        <div class="glass support 3d-card">
+          <div class="chest-art"><img src="assets/chest-3d.png" alt="3D Chest" /></div>
+          <div class="support-content">
+            <h4>ПОДДЕРЖИ СЕРВЕР!</h4>
+            <p>Покупай донат и получай уникальные возможности!</p>
+            <button class="btn main 3d-glow-btn small" data-link="shop" data-soon="Ссылка на магазин пока не настроена">Перейти в магазин →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

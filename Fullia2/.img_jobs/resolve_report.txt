@@ -1,0 +1,1 @@
+Resolved pythonw: C:\Users\Denis\AppData\Roaming\kimi-desktop\daimon-bundle\runtime\python\cpython-3.12\pythonw.exe
